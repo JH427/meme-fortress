@@ -127,10 +127,17 @@ function animateAgents() {
     }
 }
 
+async function updateHUD() {
+    const res = await fetch("http://localhost:8000/resources");
+    const data = await res.json();
+    const hud = document.getElementById("hud");
+    hud.innerText = `Cringe: ${data.cringe} | Copium: ${data.copium}`;
+}
 
 // Re-fetch agent targets every 2 seconds
 setInterval(() => {
-    updateAgentTargets();  // ⬅️ not loadWorld anymore
+    updateAgentTargets();
+    updateHUD(); // Update HUD with resources
 }, 2000);
 
 function gameLoop() {

@@ -74,6 +74,22 @@ class GameState:
                 if not any(a.x == new_x and a.y == new_y for a in self.agents if a.name != agent.name):
                     agent.x = new_x
                     agent.y = new_y
+                    
+            # ✅ Resource gathering happens HERE (after position is updated)
+            tile = next((t for t in self.grid if t.x == agent.x and t.y == agent.y), None)
+            if tile:
+                if tile.type == "cringe_mine":
+                    agent.inventory["cringe"] = agent.inventory.get("cringe", 0) + 1
+                elif tile.type == "copium_field":
+                    agent.inventory["copium"] = agent.inventory.get("copium", 0) + 1
+                    
+    def get_resource_totals(self):
+        totals = {"cringe": 0, "copium": 0}
+        for agent in self.agents:
+            for k in totals:
+                totals[k] += agent.inventory.get(k, 0)
+        return totals
+
 
 
 

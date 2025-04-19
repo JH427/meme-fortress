@@ -45,6 +45,10 @@ async def start_agent_walking():
             game.step_agents()
             await asyncio.sleep(2)  # every 2 seconds
     asyncio.create_task(loop())
+    
+@app.get("/resources")
+def get_resources():
+    return game.get_resource_totals()
 
 if __name__ == "__main__":
     uvicorn.run("main:app", port=8000, reload=True)

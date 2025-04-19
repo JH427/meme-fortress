@@ -8,12 +8,27 @@
       font-family: "Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", sans-serif;
       font-size: 24px;
     }
+    #hud {
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #00ffea;
+        font-family: monospace;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+      
   </style>
 </head>
 <body>
     <h1>Meme Fortress</h1>
   
     <canvas id="gameCanvas" width="320" height="320" style="border:1px solid #444;"></canvas>
+    
+    <div id="hud"></div>
+    
     <br />
   
     <input id="cmd" placeholder="Enter prompt..." />
